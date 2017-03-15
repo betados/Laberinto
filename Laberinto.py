@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Matriz import Matriz
+from Personaje import Personaje
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from math import *  # trigonometry
@@ -8,8 +9,31 @@ import pygame  # just to get a display
 # Definimos algunos colores
 NEGRO = (0, 0, 0)
 pygame.init()
-pantalla = pygame.display.set_mode((800, 600), pygame.OPENGL | pygame.DOUBLEBUF)
-pygame.display.set_caption("Laberinto")
+
+
+def set_screen_prop():
+    user32 = ctypes.windll.user32
+    screenSize =  user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
+    print(screenSize)
+    size = (screenSize)
+    pygame.display.set_caption("Laberinto")
+
+    #para que ocultarlo y no limitarlo a los bordes de la pantalla
+    pygame.mouse.set_visible(False)
+    pygame.event.set_grab(True)
+
+    return pygame.display.set_mode((size) , pygame.OPENGL| pygame.DOUBLEBUF | pygame.FULLSCREEN)
+    # return pygame.display.set_mode((size) , pygame.OPENGL | pygame.FULLSCREEN)
+
+
+
+
+
+# pantalla = pygame.display.set_mode((1440, 900), pygame.OPENGL | pygame.DOUBLEBUF)
+
+
+pantalla=set_screen_prop()
+
 # Se usa para establecer cuan rápido se actualiza la pantalla
 reloj = pygame.time.Clock()
 
@@ -33,6 +57,7 @@ glEnable(GL_TEXTURE_2D);
 # COSAS DEL OPENGL-----------------------------------
 
 matriz = Matriz()
+personaje = Personaje()
 done = False
 pulsado=False
 
@@ -50,10 +75,7 @@ while not done:
             done = True
         if evento.type == pygame.MOUSEBUTTONDOWN:
             pass
-        if evento.type == pygame.KEYDOWN:
-            if evento.key == pygame.K_w:
-                pass
-                # gluLookAt(1, 1, 1, 0, 0, 0, 0, 0, 1)
+
 
 
 
@@ -75,17 +97,26 @@ while not done:
     if teclas[pygame.K_d]:
         y=y-0.2
 
-    t=reloj.get_time()
+    # para sair
+    if teclas[pygame.K_ESCAPE]:
+        done=True
+
+    personaje.setMirada(pygame.mouse.get_rel())
+
+    # t=reloj.get_time()
+
+    # posicion y orientacion de la cámara
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity()
     gluPerspective(90, 1, 0.01, 1000)
     gluLookAt(x, y, 1,  # pos
-              1000, 0, 1,  # hacia donde mira
+              personaje.getMirada()[0], personaje.getMirada()[1], personaje.getMirada()[2],  # hacia donde mira
               0, 0, 1)  # eje vertical
 
 
     # --- EL CÓDIGO DE DIBUJO DEBERÍA IR AQUÍ
 
+    # borra lo anterior
     glClearColor(0.0, 0.0, 0.0, 1)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     # dibuja suelo
