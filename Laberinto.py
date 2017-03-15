@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from Matriz import Matriz
 
 import pygame
 
@@ -24,6 +24,8 @@ while not done:
         if evento.type == pygame.QUIT:
             done = True
         if evento.type == pygame.MOUSEBUTTONDOWN:
+            matriz = Matriz()
+            matriz.imprime()
             pass
 
     # --- LA LÓGICA DEL JUEGO DEBERÍA IR AQUÍ
