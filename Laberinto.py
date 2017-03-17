@@ -64,6 +64,7 @@ pulsado=False
 
 x=0
 y=0
+z=1
 
 
 # -------- Bucle principal del Programa -----------
@@ -87,15 +88,22 @@ while not done:
 
     # --- LA LÓGICA DEL JUEGO DEBERÍA IR AQUÍ
     incremento=0.00000001
+    avance = 0, 0
     teclas = pygame.key.get_pressed()
     if teclas[pygame.K_w]:
-        x=x+0.2
+        # x=x+0.2
+        avance = avance[0]+1, avance[1]
     if teclas[pygame.K_a]:
-        y=y+0.2
+        # y=y+0.2
+        avance = avance[0], avance[1]+1
     if teclas[pygame.K_s]:
-        x=x-0.2
+        # x=x-0.2
+        avance = avance[0]-1, avance[1]
     if teclas[pygame.K_d]:
-        y=y-0.2
+        # y=y-0.2
+        avance = avance[0], avance[1]-1
+
+    personaje.avanza(avance)
 
     # para sair
     if teclas[pygame.K_ESCAPE]:
@@ -109,9 +117,16 @@ while not done:
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity()
     gluPerspective(90, 1, 0.01, 1000)
-    gluLookAt(x, y, 1,  # pos
-              personaje.getMirada()[0], personaje.getMirada()[1], personaje.getMirada()[2],  # hacia donde mira
-              0, 0, 1)  # eje vertical
+
+    """PRIMERA PERSONA"""
+    # gluLookAt(personaje.getPos()[0], personaje.getPos()[1], z,  # pos
+    #           personaje.getMirada()[0], personaje.getMirada()[1], personaje.getMirada()[2],  # hacia donde mira
+    #           0, 0, 1)  # eje vertical
+    """TERCERA PERSONA"""
+    gluLookAt(0, 0, 10,  # pos
+                  1, 0, 0,  # hacia donde mira
+                  0, 0, 1)  # eje vertical
+
 
 
     # --- EL CÓDIGO DE DIBUJO DEBERÍA IR AQUÍ
@@ -123,6 +138,7 @@ while not done:
 
     # gluLookAt(x+3, y+3, 3,0, 0, 0, 0, 0, 1)
     matriz.dibuja()
+    personaje.dibuja()
     # use the texture
     # vertices & texture data
 

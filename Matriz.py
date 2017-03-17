@@ -28,12 +28,12 @@ class Matriz:
             for x in range(-self.__rango,self.__rango):
                 for y in range(-self.__rango, self.__rango):
                     if (x + y) % 2 == 0:
-                        glColor3f(0.3, 0.1, 1)
+                        glColor3f(0, 0.02, 0)
                     else:
                         glColor3fv(black)
                     glRectf(x, y, x + 1, y + 1)
         finally:
             glEnable(GL_LIGHTING)
-            glBegin(GL_TRIANGLE_STRIP);
-            glEnd();
+            glBegin(GL_TRIANGLE_STRIP)
+            glEnd()
             glFlush()
