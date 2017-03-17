@@ -25,10 +25,10 @@ class Personaje:
 
         self.mirada= self.getModulo(self.mirada)*math.cos(self.argumentoMirada), \
                      self.getModulo(self.mirada)*math.sin(self.argumentoMirada), \
-                     self.mirada[2] - movimiento[1] * 0.5
-        print("argumento: ", self.argumentoMirada)
-        print("coseno: ", math.cos(self.argumentoMirada))
-        print("------------------: ")
+                     self.mirada[2] - movimiento[1] * 1.2
+        # print("argumento: ", self.argumentoMirada)
+        # print("coseno: ", math.cos(self.argumentoMirada))
+        # print("------------------: ")
 
     def getPos(self):
         return self.pos
