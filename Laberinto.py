@@ -119,13 +119,13 @@ while not done:
     gluPerspective(90, 1, 0.01, 1000)
 
     """PRIMERA PERSONA"""
-    # gluLookAt(personaje.getPos()[0], personaje.getPos()[1], z,  # pos
-    #           personaje.getMirada()[0], personaje.getMirada()[1], personaje.getMirada()[2],  # hacia donde mira
-    #           0, 0, 1)  # eje vertical
+    gluLookAt(personaje.getPos()[0], personaje.getPos()[1], z,  # pos
+              personaje.getMirada()[0], personaje.getMirada()[1], personaje.getMirada()[2],  # hacia donde mira
+              0, 0, 1)  # eje vertical
     """TERCERA PERSONA"""
-    gluLookAt(0, 0, 10,  # pos
-                  1, 0, 0,  # hacia donde mira
-                  0, 0, 1)  # eje vertical
+    # gluLookAt(0, 0, 10,  # pos
+    #               1, 0, 0,  # hacia donde mira
+    #               0, 0, 1)  # eje vertical
 
 
 
@@ -138,7 +138,8 @@ while not done:
 
     # gluLookAt(x+3, y+3, 3,0, 0, 0, 0, 0, 1)
     matriz.dibuja()
-    personaje.dibuja()
+    # personaje.dibuja()
+
     # use the texture
     # vertices & texture data
 

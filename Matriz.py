@@ -28,7 +28,7 @@ class Matriz:
             for x in range(-self.__rango,self.__rango):
                 for y in range(-self.__rango, self.__rango):
                     if (x + y) % 2 == 0:
-                        glColor3f(0, 0.02, 0)
+                        glColor3f(0, 0.1, 0)
                     else:
                         glColor3fv(black)
                     glRectf(x, y, x + 1, y + 1)

@@ -23,7 +23,12 @@ class Personaje:
         # cambia la z hacia donde mira el person
         self.argumentoMirada -= movimiento[0] * 0.05
 
-        self.mirada= self.getModulo(self.mirada)*math.cos(self.argumentoMirada), self.getModulo(self.mirada)*math.sin(self.argumentoMirada), self.mirada[2] - movimiento[1] * 0.5
+        self.mirada= self.getModulo(self.mirada)*math.cos(self.argumentoMirada), \
+                     self.getModulo(self.mirada)*math.sin(self.argumentoMirada), \
+                     self.mirada[2] - movimiento[1] * 0.5
+        print("argumento: ", self.argumentoMirada)
+        print("coseno: ", math.cos(self.argumentoMirada))
+        print("------------------: ")
 
     def getPos(self):
         return self.pos
@@ -45,14 +50,17 @@ class Personaje:
                     self.mirada[2]
 
         self.argumentoMirada = self.getArgumento(self.mirada)
-        print(self.argumentoMirada)
+        # print(self.argumentoMirada)
     def getUnitario(self,vector):
         modulo = self.getModulo(vector)
         return vector[0]/modulo, vector[1]/modulo
     def getModulo(self,vector):
         return math.sqrt(math.pow(vector[0], 2) + math.pow(vector[1], 2))
     def getPerpendicular(self,vector):
-        return vector[1], vector[0]
+        argumento=self.getArgumento(vector)+math.pi/2
+
+        return math.cos(argumento), math.sin(argumento)
+
     def getArgumento(self,vector):
         if vector[0] == 0:
             if vector[1] > 0:
@@ -60,7 +68,7 @@ class Personaje:
             else:
                 return (3 * math.pi) / 2
         else:
-            return math.atan(self.mirada[1] / self.mirada[0])
+            return math.atan2(self.mirada[1] , self.mirada[0])
     def getVariacionPos(self):
         variacion = self.pos[0]-self.posAnt[0], self.pos[1]-self.posAnt[1]
         self.posAnt=self.pos
@@ -74,6 +82,12 @@ class Personaje:
         glBegin(GL_LINES)
         glVertex2f(self.pos[0],self.pos[1])
         glVertex2f(self.mirada[0],self.mirada[1])
+        glEnd()
+
+        glColor3f(0, 0, 0.5)
+        glBegin(GL_LINES)
+        glVertex2f(self.pos[0],self.pos[1])
+        glVertex2f(self.getPerpendicular(self.mirada)[0],self.getPerpendicular(self.mirada)[1])
         glEnd()
 
 
