@@ -1,7 +1,9 @@
 import math
 from OpenGL.GL import *
+
+
 class Personaje:
-    def __init__(self,pos=(0,0,5),mira=(100,100,1)):
+    def __init__(self,pos=(0, 0, 100),mira=(100, 100, 1)):
         self.pos=pos
         self.posAnt=pos
         self.mirada=mira
@@ -9,16 +11,12 @@ class Personaje:
         self.moduloPosicion =self.getModulo(pos)
 
         self.argumentoPosicion = self.getArgumento(pos)
-
-
         self.moduloMirada = math.sqrt( math.pow(pos[0],2) +  math.pow(pos[0],2) ),\
                       math.sqrt( math.pow(pos[1],2) +  math.pow(pos[1],2) )
 
         self.argumentoMirada = self.getArgumento(mira)
 
-    def avanza(self):
-        pass
-    def setMirada(self,movimiento):
+    def setMirada(self, movimiento):
         # la x del raton cambia el ángulo y la y
         # cambia la z hacia donde mira el person
         self.argumentoMirada -= movimiento[0] * 0.05
@@ -35,6 +33,7 @@ class Personaje:
 
     def getMirada(self):
         return self.mirada
+
     def avanza(self,avance):
         # print("pos: ",self.pos)
         # print("mir: ",self.mirada)

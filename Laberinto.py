@@ -3,7 +3,6 @@ from Matriz import Matriz
 from Personaje import Personaje
 from OpenGL.GL import *
 from OpenGL.GLU import *
-from math import *  # trigonometry
 import pygame  # just to get a display
 
 # Definimos algunos colores
@@ -53,6 +52,10 @@ CameraPos = [40.0,50.0,40.0]
 glMatrixMode(GL_MODELVIEW)
 glEnable(GL_BLEND);
 glBlendFunc(GL_SRC_ALPHA, GL_ONE);  # XXX Why GL_ONE?
+# glShadeModel(GL_SMOOTH)
+# glEnable(GL_CULL_FACE)
+glEnable(GL_DEPTH_TEST)
+glEnable(GL_LIGHTING)
 glEnable(GL_TEXTURE_2D);
 # COSAS DEL OPENGL-----------------------------------
 
@@ -64,7 +67,7 @@ pulsado=False
 
 x=0
 y=0
-z=1
+z=3
 
 
 # -------- Bucle principal del Programa -----------
@@ -137,7 +140,16 @@ while not done:
     # dibuja suelo
 
     # gluLookAt(x+3, y+3, 3,0, 0, 0, 0, 0, 1)
+
+    glDisable(GL_LIGHTING)
     matriz.dibuja()
+
+    glEnable(GL_LIGHTING)
+    # glBegin(GL_TRIANGLE_STRIP)
+    # glEnd()
+    glFlush()
+
+
     # personaje.dibuja()
 
     # use the texture
