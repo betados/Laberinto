@@ -9,9 +9,5 @@ class Suelo:
         for baldosa in self.lista:
             baldosa.dibuja()
 
-    def actualiza(self, t):
-        for baldosa in self.lista:
-            baldosa.actualiza(t)
-
     def getLista(self):
         return self.lista

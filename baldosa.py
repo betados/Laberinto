@@ -13,13 +13,14 @@ class Baldosa:
         self.indice=indice
         self.color = random.randrange(2), random.randrange(2), random.randrange(2)
         # self.color = random.randrange(256)/255, random.randrange(256)/255, random.randrange(256)/255
-        if indice % 2 != 0:
-            self.colorFijo = GLfloat_3(0, 0.1, 0.9)
-        else:
-            self.colorFijo = GLfloat_3(0, 0, 0)
+        # if indice % 2 != 0:
+        #     self.colorFijo = GLfloat_3(0, 0.1, 0.9)
+        # else:
+        #     self.colorFijo = GLfloat_3(0, 0, 0)
 
         centro = punto[0]+lado/2,  punto[1]+lado/2
-        # print("constructor baldosa")
+
+
         angulo=(5/4)*math.pi
         for i in range(0,4,1):
             punto1 = centro[0] + math.sqrt(2)/2 * math.cos(angulo), centro[1]+math.sqrt(2)/2 * math.sin(angulo)
@@ -34,6 +35,6 @@ class Baldosa:
         for pared in self.listaParedes:
             pared.dibuja()
 
-
-        glColor3fv(self.colorFijo)
+        print(len(self.listaParedes))
+        glColor3fv(self.color)
         glRectf(self.punto[0],self.punto[1],self.lado*(self.punto[0]+1),self.lado*(self.punto[1]+1))

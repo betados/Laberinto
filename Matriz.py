@@ -6,10 +6,10 @@ from OpenGL.GL import *
 
 
 class Matriz:
-    __rango =2
+    __rango =4
     lado = 1
     suelo = Suelo()
-    pared = Pared((0, 0), (1, 1), lado)
+    # pared = Pared((0, 0), (1, 1), lado)
 
     haySalida = False
 
@@ -20,23 +20,23 @@ class Matriz:
             for j in range(self.__rango):
                 # TODO forzar a que el primer elemento tenga entrada
                 self.elemento[i][j] = random.randrange(4)
-                # TODO crear baldosas
-                contador = 0
-                for x in range(0, self.__rango):
-                    for y in range(0, self.__rango):
-                        baldosa = Baldosa((x,y),contador,self.lado)
-                        # baldosa = Baldosa([
-                        #     [self.lado * x, self.lado * y],
-                        #     [self.lado * (x + 1), self.lado * (y + 1)]
-                        # ],contador,self.lado)
-                        contador+=1
-                        # baldosa = Baldosa([
-                        #     [self.lado * x, self.lado * y],
-                        #     [self.lado * (x+1), self.lado * y],
-                        #     [self.lado * (x + 1), self.lado * (y + 1)],
-                        #     [self.lado * x, self.lado * (y+1)]
-                        # ])
-                        self.suelo.add(baldosa)
+
+        contador = 0
+        for x in range(0, self.__rango):
+            for y in range(0, self.__rango):
+                baldosa = Baldosa((x,y),contador,self.lado)
+                # baldosa = Baldosa([
+                #     [self.lado * x, self.lado * y],
+                #     [self.lado * (x + 1), self.lado * (y + 1)]
+                # ],contador,self.lado)
+                contador+=1
+                # baldosa = Baldosa([
+                #     [self.lado * x, self.lado * y],
+                #     [self.lado * (x+1), self.lado * y],
+                #     [self.lado * (x + 1), self.lado * (y + 1)],
+                #     [self.lado * x, self.lado * (y+1)]
+                # ])
+                self.suelo.add(baldosa)
 
     def imprime(self):
 

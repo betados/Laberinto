@@ -67,7 +67,7 @@ pulsado=False
 
 x=0
 y=0
-z=3
+z=0.5
 
 
 # -------- Bucle principal del Programa -----------
