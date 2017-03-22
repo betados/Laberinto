@@ -50,13 +50,14 @@ gluLookAt(0,  0, 25, #pos
 CameraPos = [40.0,50.0,40.0]
 # Draw the helix (this ought to be a display list call)
 glMatrixMode(GL_MODELVIEW)
-glEnable(GL_BLEND);
+# glEnable(GL_BLEND) """transparencia"""
 glBlendFunc(GL_SRC_ALPHA, GL_ONE);  # XXX Why GL_ONE?
-# glShadeModel(GL_SMOOTH)
+glShadeModel(GL_SMOOTH)
+
 # glEnable(GL_CULL_FACE)
 glEnable(GL_DEPTH_TEST)
 glEnable(GL_LIGHTING)
-glEnable(GL_TEXTURE_2D);
+glEnable(GL_TEXTURE_2D)
 # COSAS DEL OPENGL-----------------------------------
 
 matriz = Matriz()
@@ -122,7 +123,7 @@ while not done:
     gluPerspective(90, 1, 0.01, 1000)
 
     """PRIMERA PERSONA"""
-    gluLookAt(personaje.getPos()[0], personaje.getPos()[1], z,  # pos
+    gluLookAt(personaje.getPos()[0], personaje.getPos()[1], matriz.getZ(),  # pos
               personaje.getMirada()[0], personaje.getMirada()[1], personaje.getMirada()[2],  # hacia donde mira
               0, 0, 1)  # eje vertical
     """TERCERA PERSONA"""
