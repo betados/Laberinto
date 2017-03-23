@@ -5,9 +5,9 @@ class Suelo:
     def add(self, baldosa):
         self.lista.append(baldosa)
 
-    def dibuja(self):
+    def dibuja(self,debugueandoEnOficina):
         for baldosa in self.lista:
-            baldosa.dibuja()
+            baldosa.dibuja(debugueandoEnOficina)
 
     def getLista(self):
         return self.lista

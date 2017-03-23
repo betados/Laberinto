@@ -8,6 +8,7 @@ class Matriz:
     __rango =5
     lado = 1
     suelo = Suelo()
+    debugueandoEnOficina = True
 
     haySalida = False
 
@@ -41,4 +42,4 @@ class Matriz:
         return 5
 
     def dibuja(self, rojo=0):
-        self.suelo.dibuja()
+        self.suelo.dibuja(self.debugueandoEnOficina)
