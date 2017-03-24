@@ -9,6 +9,10 @@ import pygame  # just to get a display
 NEGRO = (0, 0, 0)
 pygame.init()
 
+"""Debugueando"""
+debugueandoEnOficina = True
+primeraPersona = False
+
 
 def set_screen_prop():
     user32 = ctypes.windll.user32
@@ -60,7 +64,7 @@ glEnable(GL_LIGHTING)
 glEnable(GL_TEXTURE_2D)
 # COSAS DEL OPENGL-----------------------------------
 
-matriz = Matriz()
+matriz = Matriz(debugueandoEnOficina)
 personaje = Personaje()
 done = False
 pulsado=False
@@ -122,14 +126,17 @@ while not done:
     glLoadIdentity()
     gluPerspective(90, 1, 0.01, 1000)
 
-    """PRIMERA PERSONA"""
-    gluLookAt(personaje.getPos()[0], personaje.getPos()[1], matriz.getZ(),  # pos
-              personaje.getMirada()[0], personaje.getMirada()[1], personaje.getMirada()[2],  # hacia donde mira
-              0, 0, 1)  # eje vertical
-    """TERCERA PERSONA"""
-    # gluLookAt(0, 0, 10,  # pos
-    #               1, 0, 0,  # hacia donde mira
-    #               0, 0, 1)  # eje vertical
+
+    if primeraPersona:
+        """PRIMERA PERSONA"""
+        gluLookAt(personaje.getPos()[0], personaje.getPos()[1], matriz.getZ(),  # pos
+                  personaje.getMirada()[0], personaje.getMirada()[1], personaje.getMirada()[2],  # hacia donde mira
+                  0, 0, 1)  # eje vertical
+    else:
+        """TERCERA PERSONA"""
+        gluLookAt(0, 0, 8,  # pos
+                      1, 0, 0,  # hacia donde mira
+                      0, 0, 1)  # eje vertical
 
 
 
@@ -144,6 +151,7 @@ while not done:
 
     glDisable(GL_LIGHTING)
     matriz.dibuja()
+    personaje.dibuja()
 
     glEnable(GL_LIGHTING)
     # glBegin(GL_TRIANGLE_STRIP)

@@ -11,3 +11,4 @@ class Suelo:
 
     def getLista(self):
         return self.lista
+

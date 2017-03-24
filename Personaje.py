@@ -75,7 +75,7 @@ class Personaje:
     def dibuja(self):
         glDisable(GL_LIGHTING)
         glColor3f(0.1, 0.02, 0)
-        glRectf(self.pos[0]-.5, self.pos[1]-.5,self.pos[0]+.5, self.pos[1]+.5)
+        glRectf(self.pos[0]-.3, self.pos[1]-.3,self.pos[0]+.3, self.pos[1]+.3)
 
         glColor3f(0, 0, 0.5)
         glBegin(GL_LINES)
@@ -83,11 +83,11 @@ class Personaje:
         glVertex2f(self.mirada[0],self.mirada[1])
         glEnd()
 
-        glColor3f(0, 0, 0.5)
-        glBegin(GL_LINES)
-        glVertex2f(self.pos[0],self.pos[1])
-        glVertex2f(self.getPerpendicular(self.mirada)[0],self.getPerpendicular(self.mirada)[1])
-        glEnd()
+        # glColor3f(0, 0, 0.5)
+        # glBegin(GL_LINES)
+        # glVertex2f(self.pos[0],self.pos[1])
+        # glVertex2f(self.getPerpendicular(self.mirada)[0],self.getPerpendicular(self.mirada)[1])
+        # glEnd()
 
 
         glEnable(GL_LIGHTING)

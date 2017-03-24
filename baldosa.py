@@ -9,11 +9,11 @@ class Baldosa:
     primero = False
 
     def __init__(self, punto, lado, rango):
-
+        self.rango = rango
         self.lado = lado
         self.punto = punto[0]*lado, punto[1]*lado
         self.color = random.randrange(2), random.randrange(2), random.randrange(2)
-        self.colorOficina = random.randrange(2)/40, random.randrange(2)/40, random.randrange(2)/40
+        self.colorOficina = random.randrange(2)/20, random.randrange(2)/30, random.randrange(2)/20
 
         centro = self.punto[0]+lado/2, self.punto[1]+lado/2
         self.centro = centro
@@ -38,15 +38,16 @@ class Baldosa:
         if punto[0] == rango - 1 and punto[1] == rango - 1:
             self.creaPared(0, 4)
 
+
     def dibuja(self, debugueandoEnOficina):
         for pared in self.listaParedes:
             pared.dibuja(debugueandoEnOficina)
 
-        if debugueandoEnOficina:
-            glColor3fv(self.colorOficina)
-        else:
-            glColor3fv(self.color)
-        glRectf(self.punto[0], self.punto[1], self.punto[0]+self.lado, self.punto[1]+self.lado)
+        # if debugueandoEnOficina:
+        #     glColor3fv(self.colorOficina)
+        # else:
+        #     glColor3fv(self.color)
+        # glRectf(self.punto[0], self.punto[1], self.punto[0]+self.lado, self.punto[1]+self.lado)
 
         """Lineas en el centro de las baldosas"""
         # if self.primero:
