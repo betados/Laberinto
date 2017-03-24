@@ -12,3 +12,10 @@ class Suelo:
     def getLista(self):
         return self.lista
 
+    def quitaParedes(self, listacamino):
+        for baldosa in self.lista:
+            for camino in listacamino:
+                if camino == baldosa.getPos():
+                    print("La baldosa ",baldosa.getPos()," tiene un camino que parte de ella")
+
+

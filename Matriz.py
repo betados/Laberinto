@@ -5,7 +5,7 @@ from OpenGL.GL import *
 
 
 class Matriz:
-    __rango =5
+    __rango =3
     lado = 1
     suelo = Suelo()
 
@@ -31,6 +31,7 @@ class Matriz:
                 # ])
         self.listaCamino = self.camino()
         print(self.listaCamino)
+        self.suelo.quitaParedes(self.listaCamino)
 
     def getZ(self):
         return self.lado/2
@@ -49,10 +50,16 @@ class Matriz:
 
 
     def camino(self):
-        lista = []
-        x=0
-        y=0
+        x = 0
+        y = 0
+        lista = [(x, y)]
+
         while x != self.__rango - 1 or y != self.__rango - 1:
+            # TODO hacer que no pueda volver a una baldosa donde ya estuvo salvo que sea retroceder por su camino
+
+            # fixme en vez de hacer la aleatoriedad sobre la x e y por separado creo que sería mejor hacer la aleatoriedad
+            # fixme sobre la direccíon a tomar y luego en base a ella actualizar la x e y
+
             aleatorioX = random.randrange(-1, 2)
             x += aleatorioX
             if x < 0:
@@ -70,9 +77,15 @@ class Matriz:
 
             lista.append((x, y))
 
-            #todo quitar los repetidos de la lista
+
 
             # print("x: ", x,"   y: ", y)
 
-        print("FIN:   x: ", x, "   y: ",y, "     RANGO: ", self.__rango)
+        # print("FIN:   x: ", x, "   y: ",y, "     RANGO: ", self.__rango)
+        # todo quitar los repetidos de la lista
+        print(lista)
+        for i, elemento in enumerate(lista):
+            if i != 0:
+                if elemento == lista[i-1]:
+                    lista.pop(i)
         return lista

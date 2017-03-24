@@ -67,3 +67,6 @@ class Baldosa:
             pared = Pared(punto1, punto2, self.lado)
             self.listaParedes.append(pared)
 
+    def getPos(self):
+        return self.punto
+
