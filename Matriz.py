@@ -5,7 +5,7 @@ from OpenGL.GL import *
 
 
 class Matriz:
-    __rango =3
+    __rango =5
     lado = 1
     suelo = Suelo()
 
@@ -35,7 +35,6 @@ class Matriz:
 
     def getZ(self):
         return self.lado/2
-        return 5
 
     def dibuja(self, rojo=0):
         self.suelo.dibuja(self.debugueandoEnOficina)
@@ -50,42 +49,65 @@ class Matriz:
 
 
     def camino(self):
-        x = 0
-        y = 0
-        lista = [(x, y)]
 
-        while x != self.__rango - 1 or y != self.__rango - 1:
-            # TODO hacer que no pueda volver a una baldosa donde ya estuvo salvo que sea retroceder por su camino
+        tryAgain = True
 
-            # fixme en vez de hacer la aleatoriedad sobre la x e y por separado creo que sería mejor hacer la aleatoriedad
-            # fixme sobre la direccíon a tomar y luego en base a ella actualizar la x e y
+        while tryAgain:
+            i = 0
+            x = 0
+            y = 0
+            xAnt = 0
+            yAnt = 0
+            lista = [(x, y)]
+            while x != self.__rango - 1 or y != self.__rango - 1:
+                tryAgain = False
+                aleatorioD = random.randrange(4)
+                if aleatorioD == 0:
+                    x += 1
+                if aleatorioD == 1:
+                    y += 1
+                if aleatorioD == 2:
+                    x -= 1
+                if aleatorioD == 3:
+                    y -= 1
 
-            aleatorioX = random.randrange(-1, 2)
-            x += aleatorioX
-            if x < 0:
-                x = 0
-            if x > self.__rango - 1:
-                x = self.__rango - 1
-            lista.append((x, y))
+                if x < 0:
+                    x = 0
+                if x > self.__rango - 1:
+                    x = self.__rango - 1
 
-            aleatorioY = random.randrange(-1, 2)
-            y += aleatorioY
-            if y < 0:
-                y = 0
-            if y > self.__rango - 1:
-                y = self.__rango - 1
+                if y < 0:
+                    y = 0
+                if y > self.__rango - 1:
+                    y = self.__rango - 1
 
-            lista.append((x, y))
+                sePuedeApendear = False
+                if (x, y) != lista[len(lista)-1]:
+                    for elemento in lista:
+                        if (x, y) == elemento:
+                            sePuedeApendear = False
+                            break
+                        sePuedeApendear = True
+
+                    # FIXME hacer que SI pueda volver sobre sus pasos para crear callejones sin salida
+                    # fixme se supone que esto lo hace pero NO
+                    if (x, y) == (xAnt, yAnt):
+                        sePuedeApendear = True
+
+                if sePuedeApendear:
+                    lista.append((x, y))
+                    xAnt=x
+                    yAnt=y
+                else:
+                    x = xAnt
+                    y = yAnt
+
+                i += 1
+                if i == 999:
+                    tryAgain = True
+                    break
+                #                 lista.pop(i)
 
 
-
-            # print("x: ", x,"   y: ", y)
-
-        # print("FIN:   x: ", x, "   y: ",y, "     RANGO: ", self.__rango)
-        # todo quitar los repetidos de la lista
         print(lista)
-        for i, elemento in enumerate(lista):
-            if i != 0:
-                if elemento == lista[i-1]:
-                    lista.pop(i)
         return lista

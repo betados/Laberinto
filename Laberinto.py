@@ -10,7 +10,7 @@ NEGRO = (0, 0, 0)
 pygame.init()
 
 """Debugueando"""
-debugueandoEnOficina = True
+debugueandoEnOficina = False
 primeraPersona = False
 
 
@@ -134,8 +134,8 @@ while not done:
                   0, 0, 1)  # eje vertical
     else:
         """TERCERA PERSONA"""
-        gluLookAt(0, 0, 8,  # pos
-                      1, 0, 0,  # hacia donde mira
+        gluLookAt(personaje.getPos()[0], personaje.getPos()[1], 8,  # pos
+                  personaje.getPos()[0]+1, personaje.getPos()[1], 0,  # hacia donde mira
                       0, 0, 1)  # eje vertical
 
 
