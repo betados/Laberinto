@@ -5,8 +5,8 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 import pygame  # just to get a display
 
-# Definimos algunos colores
-NEGRO = (0, 0, 0)
+
+
 pygame.init()
 
 """Debugueando"""
@@ -21,7 +21,7 @@ def set_screen_prop():
     size = (screenSize)
     pygame.display.set_caption("Laberinto")
 
-    #para que ocultarlo y no limitarlo a los bordes de la pantalla
+    # para que ocultarlo y no limitarlo a los bordes de la pantalla
     pygame.mouse.set_visible(False)
     pygame.event.set_grab(True)
 
@@ -134,7 +134,7 @@ while not done:
                   0, 0, 1)  # eje vertical
     else:
         """TERCERA PERSONA"""
-        gluLookAt(personaje.getPos()[0], personaje.getPos()[1], 8,  # pos
+        gluLookAt(personaje.getPos()[0], personaje.getPos()[1], matriz.getZ()*8,  # pos
                   personaje.getPos()[0]+1, personaje.getPos()[1], 0,  # hacia donde mira
                       0, 0, 1)  # eje vertical
 

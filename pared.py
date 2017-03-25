@@ -4,7 +4,8 @@ from OpenGL.GL import *
 
 class Pared:
 
-    def __init__(self, origen, final, alto=1):
+    def __init__(self, origen, final, entreCuales, alto=1):
+        self.entreCuales = entreCuales
         self.alto = alto
         self.origen = origen
         self.final = final
@@ -36,3 +37,5 @@ class Pared:
         # glBegin(GL_TRIANGLE_STRIP)
         # glEnd()
         # glFlush()
+    def getEntreCuales(self):
+        return self.entreCuales

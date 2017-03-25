@@ -11,11 +11,12 @@ class Baldosa:
     def __init__(self, punto, lado, rango):
         self.rango = rango
         self.lado = lado
-        self.punto = punto[0]*lado, punto[1]*lado
+        #self.punto = punto[0]*lado, punto[1]*lado
+        self.punto = punto
         self.color = random.randrange(2), random.randrange(2), random.randrange(2)
         self.colorOficina = random.randrange(2)/20, random.randrange(2)/30, random.randrange(2)/20
 
-        centro = self.punto[0]+lado/2, self.punto[1]+lado/2
+        centro = self.punto[0]*lado+lado/2, self.punto[1]*lado+lado/2
         self.centro = centro
 
 
@@ -64,8 +65,25 @@ class Baldosa:
             punto2 = self.centro[0] + self.lado / 2 * math.sqrt(2) * math.cos(angulo + math.pi / 2),\
                      self.centro[1] + self.lado / 2 * math.sqrt(2) * math.sin(angulo + math.pi / 2)
 
-            pared = Pared(punto1, punto2, self.lado)
+            if i % 4 == 0:
+                baldosaContigua=self.punto[0], self.punto[1]-1
+            if i % 4 == 1:
+                baldosaContigua=self.punto[0]-1, self.punto[1]
+            if i % 4 == 2:
+                baldosaContigua=self.punto[0], self.punto[1]+1
+            if i % 4 == 3:
+                baldosaContigua=self.punto[0]+1, self.punto[1]
+                
+            print(self.punto, baldosaContigua)
+            pared = Pared(punto1, punto2, (self.punto,baldosaContigua) , self.lado)
             self.listaParedes.append(pared)
+    
+    def quitaPared(self, listaCamino):
+        for i,elemento in enumerate(listaCamino):
+            for j,pared in enumerate(self.listaParedes):
+                if i!=0:
+                    if pared.getEntreCuales() == (elemento, listaCamino[i-1]) or  pared.getEntreCuales() == (listaCamino[i-1], elemento):
+                        self.listaParedes.pop(j)
 
     def getPos(self):
         return self.punto

@@ -5,8 +5,8 @@ from OpenGL.GL import *
 
 
 class Matriz:
-    __rango =5
-    lado = 1
+    __rango =4
+    lado = 3
     suelo = Suelo()
 
     listaCamino = []
@@ -30,7 +30,7 @@ class Matriz:
                 #     [self.lado * x, self.lado * (y+1)]
                 # ])
         self.listaCamino = self.camino()
-        print(self.listaCamino)
+        #print(self.listaCamino)
         self.suelo.quitaParedes(self.listaCamino)
 
     def getZ(self):
@@ -44,7 +44,7 @@ class Matriz:
         glColor3f(0, 0, 1)
         glBegin(GL_LINE_LOOP)
         for elemento in self.listaCamino:
-            glVertex2f(elemento[0]+self.lado/2, elemento[1]+self.lado/2)
+            glVertex2f(elemento[0]*+self.lado+self.lado/2, elemento[1]*+self.lado+self.lado/2)
         glEnd()
 
 
@@ -93,6 +93,8 @@ class Matriz:
                     # fixme se supone que esto lo hace pero NO
                     if (x, y) == (xAnt, yAnt):
                         sePuedeApendear = True
+					#fixme quiza no haya que dejarle volver sobre sus pasos si no permitir que en una baldosa 
+					# haya una bifurcación que más tarde muera sin salida
 
                 if sePuedeApendear:
                     lista.append((x, y))
@@ -106,8 +108,8 @@ class Matriz:
                 if i == 999:
                     tryAgain = True
                     break
-                #                 lista.pop(i)
+                #lista.pop(i)
 
 
-        print(lista)
+        #print(lista)
         return lista
