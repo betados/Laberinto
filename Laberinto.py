@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Matriz import Matriz
 from Personaje import Personaje
+from ColisionDetector import ColisionDetector
 from OpenGL.GL import *
 from OpenGL.GLU import *
 import pygame  # just to get a display
@@ -11,7 +12,7 @@ pygame.init()
 
 """Debugueando"""
 debugueandoEnOficina = False
-primeraPersona = False
+primeraPersona = True
 
 
 def set_screen_prop():
@@ -66,6 +67,7 @@ glEnable(GL_TEXTURE_2D)
 
 matriz = Matriz(debugueandoEnOficina)
 personaje = Personaje()
+colision = ColisionDetector(personaje, matriz.getListaBaldosas())
 done = False
 pulsado=False
 
@@ -112,6 +114,7 @@ while not done:
         avance = avance[0], avance[1]-1
 
     personaje.avanza(avance)
+    colision.comprueba()
 
     # para sair
     if teclas[pygame.K_ESCAPE]:
@@ -151,7 +154,7 @@ while not done:
 
     glDisable(GL_LIGHTING)
     matriz.dibuja()
-    personaje.dibuja()
+    personaje.dibuja(primeraPersona)
 
     glEnable(GL_LIGHTING)
     # glBegin(GL_TRIANGLE_STRIP)

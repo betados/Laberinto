@@ -46,6 +46,9 @@ class Matriz:
         for elemento in self.listaCamino:
             glVertex2f(elemento[0]*+self.lado+self.lado/2, elemento[1]*+self.lado+self.lado/2)
         glEnd()
+        
+    def getListaBaldosas(self):
+        return self.suelo.getListaBaldosas()
 
 
     def camino(self):
@@ -61,14 +64,15 @@ class Matriz:
             lista = [(x, y)]
             while x != self.__rango - 1 or y != self.__rango - 1:
                 tryAgain = False
-                aleatorioD = random.randrange(4)
-                if aleatorioD == 0:
+                aleatorioDireccion = random.randrange(4)
+                aleatorioBifurcacion = random.randrange(2)
+                if aleatorioDireccion == 0:
                     x += 1
-                if aleatorioD == 1:
+                if aleatorioDireccion == 1:
                     y += 1
-                if aleatorioD == 2:
+                if aleatorioDireccion == 2:
                     x -= 1
-                if aleatorioD == 3:
+                if aleatorioDireccion == 3:
                     y -= 1
 
                 if x < 0:
@@ -93,8 +97,8 @@ class Matriz:
                     # fixme se supone que esto lo hace pero NO
                     if (x, y) == (xAnt, yAnt):
                         sePuedeApendear = True
-					#fixme quiza no haya que dejarle volver sobre sus pasos si no permitir que en una baldosa 
-					# haya una bifurcación que más tarde muera sin salida
+                    #fixme quiza no haya que dejarle volver sobre sus pasos si no permitir que en una baldosa 
+                    # haya una bifurcación que más tarde muera sin salida
 
                 if sePuedeApendear:
                     lista.append((x, y))

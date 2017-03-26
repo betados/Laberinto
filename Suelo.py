@@ -9,7 +9,7 @@ class Suelo:
 		for baldosa in self.lista:
 			baldosa.dibuja(debugueandoEnOficina)
 
-	def getLista(self):
+	def getListaBaldosas(self):
 		return self.lista
 
 	def quitaParedes(self, listaCamino):

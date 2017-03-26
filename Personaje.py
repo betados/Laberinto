@@ -72,25 +72,27 @@ class Personaje:
         variacion = self.pos[0]-self.posAnt[0], self.pos[1]-self.posAnt[1]
         self.posAnt=self.pos
         return variacion
-    def dibuja(self):
-        glDisable(GL_LIGHTING)
-        glColor3f(0.1, 0.02, 0)
-        glRectf(self.pos[0]-.3, self.pos[1]-.3,self.pos[0]+.3, self.pos[1]+.3)
+    def dibuja(self, primeraPersona):
+    
+        if primeraPersona == False:
+            glDisable(GL_LIGHTING)
+            glColor3f(0.1, 0.02, 0)
+            glRectf(self.pos[0]-.3, self.pos[1]-.3,self.pos[0]+.3, self.pos[1]+.3)
 
-        glColor3f(0, 0, 0.5)
-        glBegin(GL_LINES)
-        glVertex2f(self.pos[0],self.pos[1])
-        glVertex2f(self.mirada[0],self.mirada[1])
-        glEnd()
+            glColor3f(0, 0, 0.5)
+            glBegin(GL_LINES)
+            glVertex2f(self.pos[0],self.pos[1])
+            glVertex2f(self.mirada[0],self.mirada[1])
+            glEnd()
 
-        # glColor3f(0, 0, 0.5)
-        # glBegin(GL_LINES)
-        # glVertex2f(self.pos[0],self.pos[1])
-        # glVertex2f(self.getPerpendicular(self.mirada)[0],self.getPerpendicular(self.mirada)[1])
-        # glEnd()
+            # glColor3f(0, 0, 0.5)
+            # glBegin(GL_LINES)
+            # glVertex2f(self.pos[0],self.pos[1])
+            # glVertex2f(self.getPerpendicular(self.mirada)[0],self.getPerpendicular(self.mirada)[1])
+            # glEnd()
 
 
-        glEnable(GL_LIGHTING)
-        glBegin(GL_TRIANGLE_STRIP)
-        glEnd()
-        glFlush()
+            glEnable(GL_LIGHTING)
+            glBegin(GL_TRIANGLE_STRIP)
+            glEnd()
+            glFlush()

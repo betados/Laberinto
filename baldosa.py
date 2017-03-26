@@ -74,7 +74,7 @@ class Baldosa:
             if i % 4 == 3:
                 baldosaContigua=self.punto[0]+1, self.punto[1]
                 
-            print(self.punto, baldosaContigua)
+            # print(self.punto, baldosaContigua)
             pared = Pared(punto1, punto2, (self.punto,baldosaContigua) , self.lado)
             self.listaParedes.append(pared)
     
